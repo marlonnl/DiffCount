@@ -2,6 +2,10 @@ import { styled } from 'styled-components'
 
 export const LogoStyle = styled.h1`
   & a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+
     color: #000;
     background-color: #e4e6c3;
 

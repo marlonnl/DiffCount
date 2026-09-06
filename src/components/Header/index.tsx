@@ -2,7 +2,7 @@ import Logo from '../Logo'
 import { Menu } from '../Menu'
 import { HeaderContainer } from './styles'
 
-export const Header = () => {
+export default function Header() {
   return (
     <HeaderContainer>
       <Logo />

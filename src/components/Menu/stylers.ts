@@ -23,6 +23,10 @@ export const MenuItem = styled.div`
     &:hover {
       background-color: #fea82f;
     }
+
+    &:active {
+      filter: opacity(80%);
+    }
   }
 
   & svg {

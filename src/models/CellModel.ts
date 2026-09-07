@@ -1,4 +1,7 @@
+import type { CellId } from '../constants/cellColors'
+
 export type CellModel = {
+  id: CellId
   name: {
     full: string
     name: string
@@ -10,7 +13,7 @@ export type CellModel = {
   }
   count: number
   key: 'a' | 's' | 'd' | 'f' | 'g' | 'h' | 'q'
-  color: string
+  // color: CellColorName
   VR: string
   group: 'RBC' | 'WBC'
   maturiry: 'mature' | 'immature'

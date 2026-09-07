@@ -1,10 +1,10 @@
 export const cellColors = {
-  Segmentado: '#e88fa6',
-  Bastão: '#F5C9D3',
-  Linfócito: '#5B9BD5',
-  Monócito: '#7B6FD1',
-  Eosinófilo: '#E2725C',
-  Basófilo: '#8FC9A9',
-} as const
+  segmentado: '#E88FA6',
+  bastao: '#F5C9D3',
+  linfocito: '#5B9BD5',
+  monocito: '#7B6FD1',
+  eosinofilo: '#E2725C',
+  basofilo: '#8FC9A9',
+} as const satisfies Record<string, `#${string}`> // garante o # no hex
 
-export type CellColorHex = keyof typeof cellColors
+export type CellId = keyof typeof cellColors

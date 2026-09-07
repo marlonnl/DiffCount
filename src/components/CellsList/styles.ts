@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+type CellWrapperProps = {
+  active?: boolean
+}
+
 type CellColorProps = {
   cellColor: string
 }
@@ -15,13 +19,15 @@ export const CellsListWrapper = styled.div`
   color: #000;
 `
 
-export const CellWrapper = styled.div`
+export const CellWrapper = styled.div<CellWrapperProps>`
   display: flex;
   align-items: center;
+  /*justify-content: space-around;*/
   gap: 16px;
 
   padding: 4px 8px;
   border-bottom: 2px solid #000;
+  background-color: ${props => (props.active ? '#FFFECB' : 'transparent')};
 `
 
 export const CellColor = styled.span<CellColorProps>`
@@ -29,17 +35,19 @@ export const CellColor = styled.span<CellColorProps>`
   height: 10px;
   border: 2px solid #000;
   background-color: ${props => props.cellColor};
-
-  /*margin-right: 16px;*/
 `
 
 export const CellName = styled.p`
   font-weight: bold;
-  width: 110px;
+  width: 116px;
+
+  kbd {
+    margin-right: 4px;
+  }
 `
 
 export const CellDotsGrid = styled.div`
-  width: 574px;
+  width: 584px;
 
   display: grid;
   /*grid-auto-flow: column;*/
@@ -57,5 +65,24 @@ export const CellDot = styled.span<CellColorProps>`
 
   &:nth-child(5n):not(:nth-child(50n)) {
     margin-right: 3px;
+  }
+`
+
+export const CellTotals = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-left: auto;
+
+  & span {
+    font-size: 12px;
+    color: #666;
+  }
+
+  & p {
+    font-size: 16px;
+    line-height: 8px;
+    color: #000;
   }
 `

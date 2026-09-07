@@ -30,7 +30,22 @@ export const GlobalStyle = createGlobalStyle`
   .monospaced {
     font-family: "JetBrains Mono", monospace;
     font-optical-sizing: auto;
-    font-weight: <weight>;
+    font-weight: bold;
     font-style: normal;
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 3px 6px;
+    font-family: inherit;
+    font-size: 0.85em;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+
+    color: #333;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
 `

@@ -5,7 +5,7 @@ type CellWrapperProps = {
 }
 
 type CellColorProps = {
-  cellColor: string
+  $cellColor: string
 }
 
 export const CellsListWrapper = styled.div`
@@ -34,7 +34,7 @@ export const CellColor = styled.span<CellColorProps>`
   width: 10px;
   height: 10px;
   border: 2px solid #000;
-  background-color: ${props => props.cellColor};
+  background-color: ${props => props.$cellColor};
 `
 
 export const CellName = styled.p`
@@ -61,7 +61,7 @@ export const CellDot = styled.span<CellColorProps>`
   width: 6px;
   height: 6px;
   border: 1px solid #000;
-  background-color: ${props => props.cellColor};
+  background-color: ${props => props.$cellColor};
 
   &:nth-child(5n):not(:nth-child(50n)) {
     margin-right: 3px;

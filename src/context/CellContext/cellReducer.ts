@@ -4,7 +4,6 @@ import { CellActionTypes, type CellActionModel } from './cellActions'
 export function cellReducer(state: CellStateModel, action: CellActionModel) {
   switch (action.type) {
     case CellActionTypes.COUNT_CELL:
-      console.log('oi')
       return {
         ...state,
         cells: state.cells.map(cell =>

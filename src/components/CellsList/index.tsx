@@ -1,5 +1,5 @@
 import { cellColors } from '../../constants/cellColors'
-import { CellsDB } from '../../context/CellContext/Cells'
+import { useCellContext } from '../../context/CellContext/useCellContext'
 import { twoDigitsTransform } from '../../utils/twoDigitsTransform'
 import {
   CellColor,
@@ -12,20 +12,24 @@ import {
 } from './styles'
 
 export default function CellsList() {
+  const { state } = useCellContext()
+
   return (
     <CellsListWrapper>
-      {CellsDB.map(cell => {
+      {state.cells.map(cell => {
         const cellHexColor = cellColors[cell.id]
 
         return (
-          <CellWrapper>
-            <CellColor cellColor={cellHexColor} />
+          <CellWrapper key={cell.id}>
+            <CellColor $cellColor={cellHexColor} />
             <CellName>
               <kbd>{cell.key.toUpperCase()}</kbd>
               {cell.name.name}
             </CellName>
             <CellDotsGrid>
-              <CellDot cellColor={cellHexColor} />
+              {Array.from({ length: cell.count }).map((_, index) => (
+                <CellDot $cellColor={cellHexColor} key={index} />
+              ))}
             </CellDotsGrid>
             <CellTotals>
               <span>00.0%</span>

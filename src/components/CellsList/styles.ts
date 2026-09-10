@@ -83,6 +83,6 @@ export const CellTotals = styled.div`
   & p {
     font-size: 16px;
     line-height: 8px;
-    color: #000;
+    /*color: #000;*/
   }
 `

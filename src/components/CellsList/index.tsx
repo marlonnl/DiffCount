@@ -38,6 +38,15 @@ export default function CellsList() {
           </CellWrapper>
         )
       })}
+      <CellWrapper>
+        <CellColor $cellColor={cellColors.total} />
+        <CellName>TOTAL</CellName>
+        <p></p>
+        <CellTotals>
+          {/*<span>00.0%</span>*/}
+          <p className="monospaced">{twoDigitsTransform(state.totalCount)}</p>
+        </CellTotals>
+      </CellWrapper>
     </CellsListWrapper>
   )
 }

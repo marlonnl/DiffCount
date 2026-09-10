@@ -3,7 +3,6 @@ import {
   ArchiveIcon,
   HelpCircleIcon,
   InfoIcon,
-  ListRestartIcon,
   Settings2Icon,
 } from 'lucide-react'
 
@@ -11,15 +10,6 @@ export const Menu = () => {
   return (
     <NavContainer className="neuBox">
       <MenuContainer>
-        <MenuItem>
-          <a
-            href="#"
-            aria-label="Reiniciar/zerar contagem"
-            title="Reiniciar/zerar contagem"
-          >
-            <ListRestartIcon />
-          </a>
-        </MenuItem>
         <MenuItem>
           <a
             href="#"

@@ -1,4 +1,5 @@
 export const cellColors = {
+  total: '#000',
   segmentado: '#E88FA6',
   bastao: '#F5C9D3',
   linfocito: '#5B9BD5',

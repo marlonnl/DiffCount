@@ -1,29 +1,41 @@
+import { useEffect } from 'react'
 import { CellActionTypes } from '../../context/CellContext/cellActions'
-import { CellsDB } from '../../context/CellContext/Cells'
 import { useCellContext } from '../../context/CellContext/useCellContext'
-import { twoDigitsTransform } from '../../utils/twoDigitsTransform'
 import CellsList from '../CellsList'
 import { DiffCounterHeader, DiffCounterWrapper } from './styles'
+import { ListRestartIcon } from 'lucide-react'
+import Button from '../Button'
 
 export default function DiffCounter() {
   const { state, dispatch } = useCellContext()
 
-  function handleClick() {
-    dispatch({ type: CellActionTypes.COUNT_CELL, payload: CellsDB[0] })
-    console.log(state)
-  }
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      // teclas de comando
+      if (event.metaKey || event.ctrlKey || event.altKey) return
+
+      const cell = state.cells.find(
+        countCell => countCell.key === event.key.toLocaleLowerCase(),
+      )
+      // tecla não correspondente
+      if (!cell) return
+
+      dispatch({ type: CellActionTypes.COUNT_CELL, payload: cell })
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [state.cells, dispatch])
 
   return (
     <DiffCounterWrapper>
       <DiffCounterHeader>
         <h2>Diferencial leucocitário</h2>
-        <div>
-          Total<span>{twoDigitsTransform(state.totalCount)}</span>
-        </div>
+        <Button icon={<ListRestartIcon size={20} strokeWidth={1.5} />}>
+          resetar
+        </Button>
       </DiffCounterHeader>
       <CellsList />
-
-      <button onClick={handleClick}>Contar célula</button>
     </DiffCounterWrapper>
   )
 }

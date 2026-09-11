@@ -12,13 +12,11 @@ export default function DiffCounter() {
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       // teclas de comando ou contagem final já atingida
-      if (
-        event.metaKey ||
-        event.ctrlKey ||
-        event.altKey ||
-        state.totalCount >= 5
-      )
+      if (event.metaKey || event.ctrlKey || event.altKey) return
+      if (state.totalCount >= state.config.countTo) {
+        console.log('Contagem encerrada')
         return
+      }
 
       const cell = state.cells.find(
         countCell => countCell.key === event.key.toLocaleLowerCase(),
@@ -31,14 +29,14 @@ export default function DiffCounter() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [state.cells, dispatch, state.totalCount])
+  }, [state.cells, dispatch, state.totalCount, state.config.countTo])
 
   // contagem encerrada
-  useEffect(() => {
-    if (state.totalCount === 5) {
-      console.log('Deu de contar!!')
-    }
-  }, [state.totalCount])
+  // useEffect(() => {
+  //   if (state.totalCount >= state.config.countTo) {
+  //     console.log('Deu de contar!!')
+  //   }
+  // }, [state.totalCount, state.config.countTo])
 
   function handleReset() {
     dispatch({ type: CellActionTypes.RESET_COUNT })

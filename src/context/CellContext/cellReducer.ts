@@ -1,5 +1,6 @@
 import type { CellStateModel } from '../../models/CellStateModel'
 import { CellActionTypes, type CellActionModel } from './cellActions'
+import { CellsDB } from './Cells'
 
 export function cellReducer(state: CellStateModel, action: CellActionModel) {
   switch (action.type) {
@@ -14,6 +15,6 @@ export function cellReducer(state: CellStateModel, action: CellActionModel) {
         totalCount: state.totalCount + 1,
       }
     case CellActionTypes.RESET_COUNT:
-      return state
+      return { ...state, totalCount: 0, cells: CellsDB }
   }
 }

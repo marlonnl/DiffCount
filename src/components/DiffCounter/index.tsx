@@ -11,8 +11,14 @@ export default function DiffCounter() {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      // teclas de comando
-      if (event.metaKey || event.ctrlKey || event.altKey) return
+      // teclas de comando ou contagem final já atingida
+      if (
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey ||
+        state.totalCount >= 5
+      )
+        return
 
       const cell = state.cells.find(
         countCell => countCell.key === event.key.toLocaleLowerCase(),
@@ -25,13 +31,27 @@ export default function DiffCounter() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [state.cells, dispatch])
+  }, [state.cells, dispatch, state.totalCount])
+
+  // contagem encerrada
+  useEffect(() => {
+    if (state.totalCount === 5) {
+      console.log('Deu de contar!!')
+    }
+  }, [state.totalCount])
+
+  function handleReset() {
+    dispatch({ type: CellActionTypes.RESET_COUNT })
+  }
 
   return (
     <DiffCounterWrapper>
       <DiffCounterHeader>
         <h2>Diferencial leucocitário</h2>
-        <Button icon={<ListRestartIcon size={20} strokeWidth={1.5} />}>
+        <Button
+          onClick={handleReset}
+          icon={<ListRestartIcon size={20} strokeWidth={1.5} />}
+        >
           resetar
         </Button>
       </DiffCounterHeader>

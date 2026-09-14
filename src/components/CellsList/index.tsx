@@ -1,5 +1,6 @@
 import { cellColors } from '../../constants/cellColors'
 import { useCellContext } from '../../context/CellContext/useCellContext'
+import { relativeCalc } from '../../utils/relativeCalc'
 import { twoDigitsTransform } from '../../utils/twoDigitsTransform'
 import {
   CellColor,
@@ -32,7 +33,7 @@ export default function CellsList() {
               ))}
             </CellDotsGrid>
             <CellTotals>
-              <span>00.0%</span>
+              <span>{relativeCalc(state.totalCount, cell.count)}%</span>
               <p className="monospaced">{twoDigitsTransform(cell.count)}</p>
             </CellTotals>
           </CellWrapper>
@@ -43,7 +44,7 @@ export default function CellsList() {
         <CellName>TOTAL</CellName>
         <p></p>
         <CellTotals>
-          {/*<span>00.0%</span>*/}
+          {/*<span>100%</span>*/}
           <p className="monospaced">{twoDigitsTransform(state.totalCount)}</p>
         </CellTotals>
       </CellWrapper>

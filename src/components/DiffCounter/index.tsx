@@ -21,6 +21,7 @@ export default function DiffCounter() {
       const cell = state.cells.find(
         countCell => countCell.key === event.key.toLocaleLowerCase(),
       )
+
       // tecla não correspondente
       if (!cell) return
 

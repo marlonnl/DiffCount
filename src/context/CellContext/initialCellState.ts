@@ -6,6 +6,7 @@ export const initialCellState: CellStateModel = {
   totalCount: 0,
   config: {
     countTo: 100,
-    beep: true,
+    finalBeep: true,
+    cellBeep: false,
   },
 }
